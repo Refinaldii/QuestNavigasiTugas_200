@@ -6,7 +6,9 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -23,12 +25,39 @@ fun ListPesertaScreen(navController: NavController) {
     val daftarPeserta = listOf(
         PesertaData("Rina Aulia", "Perempuan", "Belum Menikah", "Bantul"),
         PesertaData("Dimas Fadli", "Laki-laki", "Menikah", "Yogyakarta"),
-        PesertaData("Siti Rahmawati", "Perempuan", "Belum Menikah", "Sleman")
+        PesertaData("Siti Rahmawati", "Perempuan", "Belum Menikah", "Sleman"),
+        PesertaData("Andi Pratama", "Laki-laki", "Belum Menikah", "Bantul"),
+        PesertaData("Lutfi Hidayat", "Laki-laki", "Menikah", "Kulon Progo"),
+        PesertaData("Nisa Azzahra", "Perempuan", "Belum Menikah", "Gunung Kidul")
     )
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(title = { Text("Daftar Peserta") })
+            CenterAlignedTopAppBar(
+                title = { Text("Daftar Peserta", color = Color.White) },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF1976D2)
+                )
+            )
+        },
+        bottomBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(onClick = {
+                    navController.navigate("welcome") {
+                        popUpTo("list") { inclusive = true }
+                    }
+                }) {
+                    Text("Beranda")
+                }
+                Button(onClick = { navController.navigate("form") }) {
+                    Text("Tambah Peserta")
+                }
+            }
         }
     ) { padding ->
         LazyVerticalGrid(
@@ -45,7 +74,8 @@ fun ListPesertaScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(160.dp),
-                    elevation = CardDefaults.cardElevation(4.dp)
+                    elevation = CardDefaults.cardElevation(4.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD))
                 ) {
                     Column(
                         modifier = Modifier
@@ -53,7 +83,7 @@ fun ListPesertaScreen(navController: NavController) {
                             .fillMaxSize(),
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text(peserta.nama, style = MaterialTheme.typography.titleMedium)
+                        Text(peserta.nama, style = MaterialTheme.typography.titleMedium, color = Color(0xFF0D47A1))
                         Spacer(Modifier.height(4.dp))
                         Text("Jenis Kelamin: ${peserta.jenisKelamin}")
                         Text("Status: ${peserta.status}")
