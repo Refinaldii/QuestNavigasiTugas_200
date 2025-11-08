@@ -4,8 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.tugasnavigasiku.view.WelcomeScreen
-import com.example.tugasnavigasiku.view.ListPesertaScreen
+import com.example.tugasnavigasiku.view.*
 
 @Composable
 fun NavigationApp() {
@@ -17,5 +16,6 @@ fun NavigationApp() {
     ) {
         composable("welcome") { WelcomeScreen(navController) }
         composable("list") { ListPesertaScreen(navController) }
+        composable("form") { FormulirScreen(navController) }
     }
 }
