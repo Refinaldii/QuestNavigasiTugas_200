@@ -31,6 +31,15 @@ fun WelcomeScreen(navController: NavController) {
                     .size(200.dp)
                     .padding(bottom = 16.dp)
             )
+            Text("20230140200", style = MaterialTheme.typography.headlineLarge)
+            Spacer(Modifier.height(16.dp))
+            Button(onClick = { navController.navigate("list") }) {
+                Text("Lihat Daftar Peserta")
+            }
+            Spacer(Modifier.height(12.dp))
+            Button(onClick = { navController.navigate("form") }) {
+                Text("Isi Formulir Pendaftaran")
+            }
         }
     }
 }
