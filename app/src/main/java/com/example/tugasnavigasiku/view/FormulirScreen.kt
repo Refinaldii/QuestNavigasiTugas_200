@@ -15,6 +15,7 @@ fun FormulirScreen(navController: NavController) {
     var jenisKelamin by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(false) }
 
     var expandedJK by remember { mutableStateOf(false) }
     var expandedStatus by remember { mutableStateOf(false) }
@@ -25,6 +26,14 @@ fun FormulirScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(title = { Text("Formulir Pendaftaran") })
+        },
+        bottomBar = {
+            Button(
+                onClick = { navController.navigate("welcome") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+            ) { Text("Kembali ke Beranda") }
         }
     ) { padding ->
         Column(
@@ -118,6 +127,25 @@ fun FormulirScreen(navController: NavController) {
                 label = { Text("Alamat") },
                 modifier = Modifier.fillMaxWidth()
             )
+
+            Spacer(Modifier.height(16.dp))
+
+            Button(onClick = { showDialog = true }) { Text("Submit") }
+
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    confirmButton = {
+                        TextButton(onClick = { showDialog = false }) {
+                            Text("OK")
+                        }
+                    },
+                    title = { Text("Data Tersimpan") },
+                    text = {
+                        Text("Nama: $nama\nJenis Kelamin: $jenisKelamin\nStatus: $status\nAlamat: $alamat")
+                    }
+                )
+            }
         }
     }
 }
