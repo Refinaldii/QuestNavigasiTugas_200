@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.foundation.layout.fillMaxSize
 import com.example.tugasnavigasiku.ui.theme.TugasNavigasiKuTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,9 +14,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             TugasNavigasiKuTheme {
                 Surface(
+                    modifier = androidx.compose.ui.Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Konten utama aplikasi
+                    NavigationApp()
                 }
             }
         }
